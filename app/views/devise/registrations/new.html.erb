@@ -1,7 +1,21 @@
 <h2>Sign up</h2>
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
+  
+<% if @user.errors.any? %>
+  <p>
+    <%= @user.errors.count%> prohibited this obj from being saved:
+  </p>
+  <p>
+    <% @user.errors.full_messages.each do |message| %>
+      <ul>
+        <li>
+          <%= message %>
+        </li>
+      </ul>
+    <% end %>
+  </p>
+<% end %>
 
   <div class="field">
     <%= f.label :name %><br>

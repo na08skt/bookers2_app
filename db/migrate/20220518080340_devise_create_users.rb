@@ -8,6 +8,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :encrypted_password, null: false, default: ""
       # 名前の登録
       t.string :name
+      
+      # introduction
+      t.text :introduction
       # バリデーション用=>,null: false,default: ""
       
 
