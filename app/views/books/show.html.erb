@@ -1,37 +1,39 @@
-<div class="BookDetail">
-    <table>
-        <thead>
-          <tr>
-            <th>
-              <p>Book detail</p>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-               <%= image_tag @book.user.get_profile_image(100,100) %>
-            </td>
-            <td>
-              <%= @book.book_name %>
-            </td>
-            <td>
-              <%= @book.opinion %>
-            </td>
-            <% if @book.user == current_user %>
-              <td>
-                <%= link_to "Edit", edit_book_path(@book.id) %>
-              </td>
-              <td>
-                <%= link_to "Delete", book_path(@book.id), method: :delete, "deta-comfirm" => "本当に削除しますか？"%>
-              </td>
-            <% end %>
-          </tr>
-          <tr>
-            <td>
-              <%= link_to @book.user.name, user_path(@book.id) %>
-            </td>
-          </tr>
-        </tbody>
-    </table>
+<div class="container">
+  <div class="row">
+    <% if @book_new.errors.any? %>
+      <p>
+        <%= pluralize(@book_new.errors.count, "error")%> prohibited this obj from being saved     
+      </p>
+      <p>
+        <% @book_new.errors.full_messages.each do |message| %>
+          <ul>
+            <li>
+              </br><%= message %>
+            </li>
+          </ul>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
 </div>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="side_top">
+        <%= render 'users/UserInfoAnother', user: @user %>
+      </div>
+      <div class="side_bottom">
+        <%= render 'NewBook', book_new: @book_new %>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <div class="main">
+        <%= render 'BookDetail', book: @book, user: @user, book_destroy: @book_destroy  %>
+      </div>
+    </div>
+
+  </div>
+</div>
+

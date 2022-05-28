@@ -4,32 +4,43 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    @user = User.new(User.params)
-    @user.user_id = current_user.id
-    if @user.saved
-      redirect_to home_path
-    else
-      render :new
-    end
-  end
-
   def index
+    @book_new = Book.new
+    @user_new = User.new
     @users = User.all
   end
 
+
+
   def show
+    # 特定のuser
     @user = User.find(params[:id])
+    # ↓新規投稿よう
+    @book_new = Book.new
+    # 特定userのbooks
+    @books = @user.books
+
+
+
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user == current_user
+      render :edit
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to books_path
+    if @user.update(user_params)
+      flash[:profile] = "You have updated user successfully."
+      redirect_to user_path(current_user.id)
+    else
+      render :edit
+    end
   end
 
 

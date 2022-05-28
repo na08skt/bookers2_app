@@ -1,22 +1,21 @@
-<!--<%#= render 'UserInfoInput', user: current_user %>-->
-
-<div class="container">
+<div class="contaainer">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User Info</h2>
+      
         <% if @user.errors.any? %>
-        <p>
-          <%= pluralize(@user.errors.count, "error")%> prohibited this obj from being saved:
-        </p>
-        <p>
-          <% @user.errors.full_messages.each do |message| %>
-            <ul>
-              <li>
-                <%= message %>
-              </li>
-            </ul>
-          <% end %>
-        </p>
+          <p>
+            <%= @user.errors.count%> <%= pluralize(user_new.errors.count, "error")%> prohibited this obj from being saved:
+          </p>
+          <p>
+            <% @user.errors.full_messages.each do |message| %>
+              <ul>
+                <li>
+                  <%= message %>
+                </li>
+              </ul>
+            <% end %>
+          </p>
         <% end %>
 
           <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
@@ -37,3 +36,13 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+

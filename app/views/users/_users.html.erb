@@ -7,8 +7,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @users.each do |user| %>
+        <% users.each do |user| %>
+          <tr>
             <td>
               <%= image_tag user.get_profile_image(100, 100) %>
             </td>
@@ -18,8 +18,8 @@
             <td>
               <%= link_to "Show", user_path(user.id) %>
             </td>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </tbody>
     </table>
 

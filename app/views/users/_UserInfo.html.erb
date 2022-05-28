@@ -1,0 +1,56 @@
+<h3>User info</h3>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>
+            <%= image_tag user.get_profile_image(100,100) %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <span>name</span>
+            </p>
+          </td>
+          <td>
+            <p>
+              <span>
+                <%= user.name %>
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>
+              <span>introduction</span>
+            </p>
+          </td>
+          <td>
+            <p>
+              <span>
+                <%= user.introduction %>
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="row btn-block">
+              <% if user == current_user%>
+                  <%= link_to edit_user_path(current_user), class:'btn btn-outline-secondary btn-block' do %>
+                    <i class="fas fa-user-cog"></i>
+                  <% end %>
+                <% else %>
+                  <% link_to user_path(current_user), class:'btn btn-outline-secondary btn-block' do  %>
+                    <i class="fas fa-user-cog"></i>
+                  <% end %>
+                <% end %>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
